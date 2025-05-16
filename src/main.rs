@@ -1,3 +1,10 @@
+/*
+Name: main.rs
+Author: Ishan Leung
+Language: Rust
+Description: Entry point for full iSearch pipeline – runs crawling, cleaning, and indexing + search.
+*/
+
 mod crawler;
 mod cleaner;
 mod indexer;

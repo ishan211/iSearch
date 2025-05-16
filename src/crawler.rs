@@ -1,3 +1,10 @@
+/*
+Name: crawler.rs
+Author: Ishan Leung
+Language: Rust
+Description: Web crawler to download up to 100 Wikipedia pages starting from a base URL.
+*/
+
 use reqwest::blocking::Client;
 use scraper::Html;
 use std::collections::{HashSet, VecDeque};

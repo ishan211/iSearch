@@ -1,3 +1,10 @@
+/*
+Name: cleaner.rs
+Author: Ishan Leung
+Language: Rust
+Description: Extracts readable text from saved HTML files into cleaned .txt files for indexing.
+*/
+
 use scraper::{Html, Selector};
 use std::fs::{self, create_dir_all, read_to_string, write};
 use std::path::Path;
