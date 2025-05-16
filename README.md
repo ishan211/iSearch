@@ -39,7 +39,7 @@ cargo build
 ### Option 1: Run all (crawl, clean, and search)
 
 ```bash
-cargo run
+cargo run --bin ishansearch
 ```
 
 This will:

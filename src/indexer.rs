@@ -13,7 +13,7 @@ use anyhow::Result;
 type TfIdfIndex = HashMap<String, HashMap<String, f64>>;
 
 pub fn build_index_and_search(dir: &str) -> Result<()> {
-    println!("📚 Building inverted index from `{}`...", dir);
+    println!("Building inverted index from `{}`...", dir);
     let mut index: HashMap<String, HashMap<String, usize>> = HashMap::new();
     let mut doc_lengths: HashMap<String, usize> = HashMap::new();
     let mut doc_freqs: HashMap<String, usize> = HashMap::new();
@@ -56,7 +56,7 @@ pub fn build_index_and_search(dir: &str) -> Result<()> {
         }
     }
 
-    println!("🔍 TF-IDF index built. Ready to search across {} documents.", total_docs as usize);
+    println!("TF-IDF index built. Ready to search across {} documents.", total_docs as usize);
 
     let mut input = String::new();
     loop {

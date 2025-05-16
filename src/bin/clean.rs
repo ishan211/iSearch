@@ -2,9 +2,12 @@
 Name: clean.rs
 Author: Ishan Leung
 Language: Rust
-Description: CLI binary for cleaning HTML pages and extracting plain text into the `cleaned/` directory.
+Description: CLI binary for cleaning crawled HTML Wikipedia pages and extracting readable text.
 */
 
-fn main() -> anyhow::Result<()> {
-    ishansearch::cleaner::extract_all_text("pages", "cleaned")
+use anyhow::Result;
+use ishansearch::cleaner;
+
+fn main() -> Result<()> {
+    cleaner::extract_all_text("pages", "cleaned")
 }
