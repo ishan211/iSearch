@@ -1,0 +1,26 @@
+Contents
+Summit (supercomputer)
+Summit  or  OLCF-4  was a  supercomputer  developed by  IBM  for use at  Oak Ridge Leadership Computing Facility  (OLCF), a facility at the  Oak Ridge National Laboratory , United States of America. It held the number 1 position on the  TOP500  list from June 2018 to June 2020. [ 5 ] [ 6 ]  As of June 2024, its  LINPACK benchmark  was clocked at 148.6 petaFLOPS. [ 7 ]  Summit was decommissioned on November 15, 2024. [ 8 ] 
+
+As of November 2019, the supercomputer had ranked as the 5th most energy efficient in the world with a measured power efficiency of 14.668 gigaFLOPS/watt. [ 9 ]  Summit was the first supercomputer to reach exaflop (a quintillion operations per second) speed, on a non-standard metric, achieving 1.88 exaflops during a  genomic  analysis and is expected to reach 3.3 exaflops using  mixed-precision  calculations. [ 10 ] 
+
+History
+The  United States Department of Energy  awarded a $325 million contract in November 2014 to IBM,  Nvidia  and  Mellanox . The effort resulted in  construction of Summit and  Sierra . Summit is tasked with civilian scientific research and is located at the Oak Ridge National Laboratory in Tennessee. Sierra is designed for nuclear weapons simulations and is located at the  Lawrence Livermore National Laboratory  in California. [ 11 ] 
+
+Summit was estimated to cover 5,600 square feet (520 m 2 ) [ 12 ]  and require 219 kilometres (136 mi) of cabling, [ 13 ]  and was designed to be used for research in diverse fields such as  cosmology ,  medicine , and  climatology . [ 14 ] 
+
+In 2015, the project called Collaboration of Oak Ridge, Argonne and Lawrence Livermore (CORAL) included a third supercomputer named  Aurora  and was planned for installation at  Argonne National Laboratory . [ 15 ]  By 2018, Aurora was re-engineered with completion anticipated in 2021 as an  exascale computing  project along with  Frontier  and  El Capitan  to be completed shortly thereafter. [ 16 ]  Aurora was completed in late 2022. [ 17 ] 
+
+Uses
+The Summit supercomputer was built for research in energy, artificial intelligence, human health, and other areas. [ 18 ]  It has been used in earthquake simulation, extreme weather simulation, materials science, genomics, and predicting the lifetime of neutrinos. [ 19 ] 
+
+Design
+Each of its 4,608 nodes consist of 2 IBM  POWER9   CPUs , 6  Nvidia Tesla   GPUs , [ 20 ]  with over 600 GB of  coherent memory  (96 GB  HBM2  plus 512 GB  DDR4 ) which is addressable by all CPUs and GPUs, plus 800 GB of  non-volatile RAM  that can be used as a  burst buffer  or as extended memory. [ 21 ]  The  POWER9  CPUs and  Nvidia Volta  GPUs are connected using Nvidia's high speed  NVLink . This allows for a  heterogeneous computing  model. [ 22 ] 
+
+To provide a high rate of data throughput, the nodes are connected in a non-blocking  fat-tree topology  using a dual-rail Mellanox EDR  InfiniBand  interconnect for both storage and inter-process communications traffic, which delivers both 200 Gbit/s bandwidth between nodes and in-network computing acceleration for communications frameworks such as  MPI  and  SHMEM / PGAS .
+
+The storage for Summit  [ 23 ]  has a fast in-system layer and a center-wide parallel filesystem layer. The in-system layer is optimized for fast storage with SSDs on each node, while the center-wide parallel file system provides easy to access data stored on hard drives. The two layers work together seamlessly so users do not have to differentiate their storage needs. The center-wide parallel file system is  GPFS (IBM Storage Scale).  It provides 250PB of storage. The cluster delivers 2.5 TB/s of single stream read peak throughput and 1 TB/s of 1M file throughput. It was one of the first supercomputers that also required extremely fast metadata performance to support AI/ML workloads exemplified by the 2.6M 32k file creates per second it delivers.
+
+See also
+References
+External links

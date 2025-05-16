@@ -1,0 +1,44 @@
+Glossary of computer hardware terms
+
+
+This  glossary of computer hardware terms  is a list of definitions of terms and concepts related to  computer hardware , i.e. the physical and structural components of computers, architectural issues, and peripheral devices.
+
+           
+
+A
+B
+C
+Also  chip set .
+Also  chassis ,  cabinet ,  box ,  tower ,  enclosure ,  housing ,  system unit , or simply  case .
+Also simply  PCI .
+D
+Also  Digital Versatile Disc .
+E
+F
+G
+H
+I
+Also  chip .
+J
+K
+L
+M
+N
+Also  LAN card  or  network card .
+O
+P
+R
+S
+Also  solid-state disk  or  electronic disk .
+Also  audio card .
+Also  Serial AT Attachment .
+T
+Also  trackpad .
+U
+V
+Also  graphics card .
+W
+Z
+See also
+References
+External links

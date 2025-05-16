@@ -1,0 +1,249 @@
+Contents
+Bijection
+
+
+In  mathematics , a  bijection ,  bijective function , or  one-to-one correspondence  is a  function  between two  sets  such that each element of the second set (the  codomain ) is the image of exactly one element of the first set (the  domain ). Equivalently, a bijection is a  relation  between two sets such that each element of either set is paired with exactly one element of the other set.
+
+A function is bijective  if and only if  it is  invertible ; that is, a function  
+   
+     
+       
+         f 
+         : 
+         X 
+         → 
+         Y 
+       
+     
+     {\displaystyle f:X\to Y} 
+   
+  is bijective if and only if there is a function  
+   
+     
+       
+         g 
+         : 
+         Y 
+         → 
+         X 
+         , 
+       
+     
+     {\displaystyle g:Y\to X,} 
+   
+  the  inverse  of  f , such that each of the two ways for  composing  the two functions produces an  identity function :  
+   
+     
+       
+         g 
+         ( 
+         f 
+         ( 
+         x 
+         ) 
+         ) 
+         = 
+         x 
+       
+     
+     {\displaystyle g(f(x))=x} 
+   
+  for each  
+   
+     
+       
+         x 
+       
+     
+     {\displaystyle x} 
+   
+  in  
+   
+     
+       
+         X 
+       
+     
+     {\displaystyle X} 
+   
+  and  
+   
+     
+       
+         f 
+         ( 
+         g 
+         ( 
+         y 
+         ) 
+         ) 
+         = 
+         y 
+       
+     
+     {\displaystyle f(g(y))=y} 
+   
+  for each  
+   
+     
+       
+         y 
+       
+     
+     {\displaystyle y} 
+   
+  in  
+   
+     
+       
+         Y 
+         . 
+       
+     
+     {\displaystyle Y.} 
+   
+ 
+
+For example, the  multiplication by two  defines a bijection from the  integers  to the  even numbers , which has the  division by two  as its inverse function.
+
+A function is bijective if and only if it is both  injective  (or  one-to-one )—meaning that each element in the codomain is mapped from at most one element of the domain—and  surjective  (or  onto )—meaning that each element of the codomain is mapped from at least one element of the domain. The term  one-to-one correspondence  must not be confused with  one-to-one function , which means injective but not necessarily surjective.
+
+The elementary operation of  counting  establishes a bijection from some  finite set  to the first  natural numbers   (1, 2, 3, ...) , up to the number of elements in the counted set. It results that two finite sets have the same number of elements if and only if there exists a bijection between them. More generally, two sets are said to have the same  cardinal number  if there exists a bijection between them.
+
+A bijective function from a set to itself is also called a  permutation , [ 1 ]  and the set of all permutations of a set forms its  symmetric group .
+
+Some bijections with further properties have received specific names, which include  automorphisms ,  isomorphisms ,  homeomorphisms ,  diffeomorphisms ,  permutation groups , and most  geometric transformations .  Galois correspondences  are bijections between sets of  mathematical objects  of apparently very different nature.
+
+Definition
+For a  binary relation  pairing elements of set  X  with elements of set  Y  to be a bijection, four properties must hold:
+
+Satisfying properties (1) and (2) means that a pairing is a  function  with  domain   X . It is more common to see properties (1) and (2) written as a single statement: Every element of  X  is paired with exactly one element of  Y . Functions which satisfy property (3) are said to be " onto   Y  " and are called  surjections  (or  surjective functions ). Functions which satisfy property (4) are said to be " one-to-one functions " and are called  injections  (or  injective functions ). [ 2 ]  With this terminology, a bijection is a function which is both a surjection and an injection, or using other words, a bijection is a function which is both "one-to-one" and "onto". [ 3 ] 
+
+Examples
+Batting line-up of a baseball or cricket team
+Consider the  batting line-up  of a baseball or  cricket  team (or any list of all the players of any sports team where every player holds a specific spot in a line-up). The set  X  will be the players on the team (of size nine in the case of baseball) and the set  Y  will be the positions in the batting order (1st, 2nd, 3rd, etc.) The "pairing" is given by which player is in what position in this order. Property (1) is satisfied since each player is somewhere in the list. Property (2) is satisfied since no player bats in two (or more) positions in the order. Property (3) says that for each position in the order, there is some player batting in that position and property (4) states that two or more players are never batting in the same position in the list.
+
+Seats and students of a classroom
+In a classroom there are a certain number of seats. A group of students enter the room and the instructor asks them to be seated. After a quick look around the room, the instructor declares that there is a bijection between the set of students and the set of seats, where each student is paired with the seat they are sitting in. What the instructor observed in order to reach this conclusion was that:
+
+The instructor was able to conclude that there were just as many seats as there were students, without having to count either set.
+
+More mathematical examples
+Inverses
+A bijection  f  with domain  X  (indicated by  f :  X → Y  in  functional notation ) also defines a  converse relation  starting in  Y  and going to  X  (by turning the arrows around). The process of "turning the arrows around" for an arbitrary function does not,  in general , yield a function, but properties (3) and (4) of a bijection say that this inverse relation is a function with domain  Y . Moreover, properties (1) and (2) then say that this inverse  function  is a surjection and an injection, that is, the  inverse function  exists and is also a bijection. Functions that have inverse functions are said to be  invertible . A function is invertible if and only if it is a bijection.
+
+Stated in concise mathematical notation, a function  f :  X → Y  is bijective if and only if it satisfies the condition
+
+Continuing with the baseball batting line-up example, the function that is being defined takes as input the name of one of the players and outputs the position of that player in the batting order. Since this function is a bijection, it has an inverse function which takes as input a position in the batting order and outputs the player who will be batting in that position.
+
+Composition
+The  composition   
+   
+     
+       
+         g 
+         
+         ∘ 
+         
+         f 
+       
+     
+     {\displaystyle g\,\circ \,f} 
+   
+  of two bijections  f :  X → Y  and  g :  Y → Z  is a bijection, whose inverse is given by  
+   
+     
+       
+         g 
+         
+         ∘ 
+         
+         f 
+       
+     
+     {\displaystyle g\,\circ \,f} 
+   
+  is  
+   
+     
+       
+         ( 
+         g 
+         
+         ∘ 
+         
+         f 
+         
+           ) 
+           
+             − 
+             1 
+           
+         
+         
+         = 
+         
+         ( 
+         
+           f 
+           
+             − 
+             1 
+           
+         
+         ) 
+         
+         ∘ 
+         
+         ( 
+         
+           g 
+           
+             − 
+             1 
+           
+         
+         ) 
+       
+     
+     {\displaystyle (g\,\circ \,f)^{-1}\;=\;(f^{-1})\,\circ \,(g^{-1})} 
+   
+ .
+
+Conversely, if the composition  
+   
+     
+       
+         g 
+         
+         ∘ 
+         
+         f 
+       
+     
+     {\displaystyle g\,\circ \,f} 
+   
+  of two functions is bijective, it only follows that  f  is  injective  and  g  is  surjective .
+
+Cardinality
+If  X  and  Y  are  finite sets , then there exists a bijection between the two sets  X  and  Y   if and only if   X  and  Y  have the same number of elements. Indeed, in  axiomatic set theory , this is taken as the definition of "same number of elements" ( equinumerosity ), and generalising this definition to  infinite sets  leads to the concept of  cardinal number , a way to distinguish the various sizes of infinite sets.
+
+Properties
+Category theory
+Bijections are precisely the  isomorphisms  in the  category   Set  of  sets  and set functions.  However, the bijections are not always the isomorphisms for more complex categories.  For example, in the category  Grp  of  groups , the morphisms must be  homomorphisms  since they must preserve the group structure, so the isomorphisms are  group isomorphisms  which are bijective homomorphisms.
+
+Generalization to partial functions
+The notion of one-to-one correspondence generalizes to  partial functions , where they are called  partial bijections , although partial bijections are only required to be injective. The reason for this relaxation is that a (proper) partial function is already undefined for a portion of its domain; thus there is no compelling reason to constrain its inverse to be a  total function , i.e. defined everywhere on its domain. The set of all partial bijections on a given base set is called the  symmetric inverse semigroup . [ 4 ] 
+
+Another way of defining the same notion is to say that a partial bijection from  A  to  B  is any relation 
+ R  (which turns out to be a partial function) with the property that  R  is the  graph of  a bijection  f : A′ → B′ , where  A′  is a  subset  of  A  and  B′  is a subset of  B . [ 5 ] 
+
+When the partial bijection is on the same set, it is sometimes called a  one-to-one partial  transformation . [ 6 ]  An example is the  Möbius transformation  simply defined on the complex plane, rather than its completion to the extended complex plane. [ 7 ] 
+
+Gallery
+See also
+Notes
+References
+This topic is a basic concept in set theory and can be found in any text which includes an introduction to set theory. Almost all texts that deal with an introduction to writing proofs will include a section on set theory, so the topic may be found in any of these:
+
+External links

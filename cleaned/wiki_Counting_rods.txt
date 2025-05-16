@@ -1,0 +1,66 @@
+Contents
+Counting rods
+Counting rods  (筭) are small bars, typically 3–14 cm (1" to 6") long, that were used by mathematicians for calculation in ancient  East Asia . They are placed either horizontally or vertically to represent any  integer  or  rational number .
+
+The written forms based on them are called  rod numerals . They are a true  positional numeral system  with  digits  for 1–9 and a blank for 0, from the  Warring states  period (circa 475 BCE) [ 1 ]  to the 16th century.
+
+History
+Chinese arithmeticians used counting rods well over two thousand years ago. 
+
+In 1954, forty-odd counting rods of the  Warring States period  (5th century BCE to 221 BCE) were found in  Zuǒjiāgōngshān  (左家公山)  Chu  Grave No.15 in  Changsha ,  Hunan . [ 2 ] [ 3 ] [ failed verification ] 
+
+In 1973, archeologists unearthed a number of wood scripts from a tomb in Hubei dating from the period of the  Han dynasty  (206 BCE to 220 CE). On one of the wooden scripts was written: "当利二月定算𝍥". [ citation needed ]  This is one of the earliest examples of using counting-rod numerals in writing.
+
+A square lacquer box, dating from c. 168 BCE, containing a square chess board with the TLV patterns, chessmen, counting rods, and other items, was excavated in 1972, from  Mawangdui  M3, Changsha, Hunan Province. [ 4 ] [ 5 ] 
+
+In 1976, a bundle of  Western Han -era (202 BCE to 9 CE) counting rods made of bones was unearthed from  Qianyang County  in  Shaanxi . [ 6 ] [ 7 ]  The use of counting rods must predate it;  Sunzi  ( c.  544 to  c.  496 BCE), a military strategist at the end of  Spring and Autumn period  of 771 BCE to 5th century BCE, mentions their use to make calculations to win wars before going into the battle; [ 8 ]   Laozi  (died 531 BCE), writing in the Warring States period, said "a good calculator doesn't use counting rods". [ 9 ]  The  Book of Han  (finished 111 CE) recorded: "they calculate with bamboo, diameter one fen, length six cun, arranged into a hexagonal bundle of two hundred seventy one pieces". [ 10 ] 
+
+At first, calculating rods were round in cross-section, but by the time of the  Sui dynasty  (581 to 618 CE) mathematicians used triangular rods to represent positive numbers and rectangular rods for  negative numbers . [ citation needed ] 
+
+After the  abacus  flourished [ when? ] , counting rods were abandoned except in Japan, where rod numerals developed into a symbolic notation for  algebra .
+
+Using counting rods
+Counting rods represent digits by the number of rods, and the  perpendicular  rod represents five. To avoid confusion, vertical and horizontal forms are alternately used. Generally, vertical rod numbers are used for the position for the units, hundreds, ten thousands, etc., while horizontal rod numbers are used for the tens, thousands, hundred thousands etc. It is written in  Sunzi Suanjing  that "one is vertical, ten is horizontal". [ 11 ] 
+
+Red rods represent  positive numbers  and black rods represent  negative numbers . [ 12 ]  Ancient Chinese clearly understood negative numbers and zero (leaving a blank space for it), though they had no symbol for the latter.  The Nine Chapters on the Mathematical Art , which was mainly composed in the first century CE, stated "(when using subtraction) subtract same signed numbers, add different signed numbers, subtract a positive number from zero to make a negative number, and subtract a negative number from zero to make a positive number". [ 13 ] [ 14 ]  Later, a  go  stone was sometimes used to represent zero.
+
+This alternation of vertical and horizontal rod numeral form is very important to understanding written transcription of rod numerals on manuscripts correctly. For instance, in Licheng suanjin, 81 was transcribed as  , and 108 was transcribed as  ; it is clear that the latter clearly had a blank zero on the "counting board" (i.e., floor or mat), even though on the written transcription, there was no blank. In the same manuscript, 405 was transcribed as    , with a blank space in between for obvious reasons, and could in no way be interpreted as "45" . In other words, transcribed rod numerals may not be positional, but on the counting board, they are positional.     is an exact image of the counting rod number 405 on a table top or floor.
+
+Place value
+The value of a number depends on its physical position on the counting board. A 9 at the rightmost position on the board stands for 9. Moving the batch of rods representing 9 to the left one position (i.e., to the tens place) gives 9[] or 90. Shifting left again to the third position (to the hundreds place) gives 9[][] or 900. Each time one shifts a number one position to the left, it is multiplied by 10. Each time one shifts a number one position to the right, it is divided by 10. This applies to single-digit numbers or multiple-digit numbers.
+
+Song dynasty mathematician  Jia Xian  used hand-written Chinese decimal orders 步十百千萬 as rod numeral place value, as evident from a facsimile from a page of  Yongle Encyclopedia . He arranged 七萬一千八百二十四 as
+
+He treated the Chinese order numbers as place value markers, and 七一八二四 became place value decimal number. He then wrote the rod numerals according to their place value:
+
+In Japan, mathematicians put counting rods on a counting board, a sheet of cloth with grids, and used only vertical forms relying on the grids. An 18th-century Japanese mathematics book has a checker counting board diagram, with the order of magnitude symbols "千百十一分厘毛" (thousand, hundred, ten, unit, tenth, hundredth, thousandth). [ 15 ] 
+
+Examples:
+
+Rod numerals
+Rod numerals are a positional numeral system made from shapes of counting rods. Positive numbers are written as they are and the negative numbers are written with a slant bar at the last digit. The vertical bar in the horizontal forms 6–9 are drawn shorter to have the same character height.
+
+A circle (〇) is used for 0.  Many historians think it was imported from  Indian numerals  by  Gautama Siddha  in 718, [ 13 ]  but some think it was created from the Chinese text space filler "□", and others think that the Indians acquired it from China, because it resembles a Confucian philosophical symbol for "nothing". [ 16 ] 
+
+In the 13th century,  Southern Song  mathematicians changed digits for 4, 5, and 9 to reduce strokes. [ 16 ]  The new horizontal forms eventually transformed into  Suzhou numerals . Japanese continued to use the traditional forms.
+
+Examples:
+
+In Japan,  Seki Takakazu  developed the rod numerals into symbolic notation for algebra and drastically improved  Japanese mathematics . [ 13 ]   After his period, the  positional numeral system  using  Chinese numeral characters  was developed, and the rod numerals were used only for the  plus and minus signs . 
+
+Fractions
+A fraction was expressed with rod numerals as two rod numerals one on top of another (without any other symbol, like the modern horizontal bar). [ citation needed ] 
+
+Rod calculus
+The method for using counting rods for mathematical calculation was called  rod calculation  or  rod calculus  (筹算). Rod calculus can be used for a wide range of calculations, including finding the value of  π , finding  square roots ,  cube roots , or  higher order roots , and solving a  system of linear equations .
+
+Before the introduction of a written zero, a space was used to indicate no units, and the rotation of the character in the subsequent unit column, by 90°, adopted, to help reduce the ambiguity in record values calculated on the rods. [ 17 ]  For example 107 (𝍠 𝍧) and 17 (𝍩𝍧) would be distinguished by rotation, though multiple zero units could lead to ambiguity, eg. 1007 (𝍩  𝍧) , and 10007 (𝍠   𝍧). Once written zero came into play, the rod numerals had become independent, and their use indeed outlives the counting rods, after its replacement by  abacus . One variation of horizontal rod numerals, the  Suzhou numerals  is still in use for book-keeping and in herbal medicine prescription in  Chinatowns  in some parts of the world.
+
+Unicode
+Unicode  5.0 includes counting rod numerals in their own block in the  Supplementary Multilingual Plane  (SMP) from U+1D360 to U+1D37F. The  code points  for the horizontal digits 1–9 are U+1D360 to U+1D368 and those for the vertical digits 1–9 are U+1D369 to U+1D371. The former are called  unit digits  and the latter are called  tens digits , [ 18 ] [ 19 ]  which is opposite of the convention described above. The Unicode Standard states that the orientation of the Unicode characters follows Song dynasty convention, which differs from Han dynasty practice which represented digits as vertical lines, and tens as horizontal lines. [ 20 ]  Zero should be represented by U+3007 (〇, ideographic number zero) and the negative sign should be represented by U+20E5 (combining reverse solidus overlay). [ 21 ]  As these were recently added to the character set and since they are included in the SMP, font support may still be limited.
+
+See also
+References
+External links
+For a look of the ancient counting rods, and further explanation, you can visit the sites
+
