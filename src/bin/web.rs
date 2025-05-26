@@ -1,6 +1,7 @@
 /*
 Name: web.rs
 Author: Ishan Leung
+Language: Rust
 Description: Rocket-powered web frontend to search TF-IDF index and open URLs.
 */
 
@@ -87,7 +88,7 @@ fn perform_search(form: Form<SearchForm>) -> Template {
             
             let url = found_url.unwrap_or_else(|| {
                 println!("Warning: No URL found for filename '{}' (tried {} variants)", fname, possible_filenames.len());
-                "https://example.com".to_string()
+                "https://ishanleung.com".to_string()
             });
             
             (fname, url)
