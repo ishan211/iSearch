@@ -1,0 +1,7 @@
+<h1>ishanSearch</h1>
+<form action="/search" method="post">
+    <input type="text" name="query" placeholder="Search keyword..." required>
+    <button type="submit">Search</button>
+</form>
+<br>
+<a href="/"><button>Back to Home</button></a>

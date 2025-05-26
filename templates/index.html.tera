@@ -1,0 +1,4 @@
+<h1>ishanSearch</h1>
+<h2>Created By Ishan Leung</h2>
+<p>A robust search engine created using Rust, Rocket, and SQLite with Diesel</p>
+<a href="/search"><button>Launch</button></a>

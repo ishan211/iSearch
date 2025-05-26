@@ -9,5 +9,5 @@ use anyhow::Result;
 use ishansearch::crawler;
 
 fn main() -> Result<()> {
-    crawler::crawl("https://en.wikipedia.org/wiki/Computer", "pages")
+    crawler::crawl("https://en.wikipedia.org/wiki/Computer", "data/raw")
 }

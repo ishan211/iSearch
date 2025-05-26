@@ -47,7 +47,8 @@ pub fn crawl(start_url: &str, output_dir: &str) -> Result<()> {
 
         let name = url.replace(BASE, "").replace("/", "_");
         let filename = format!("{}/{}.html", output_dir, name.trim_start_matches('_'));
-        write(&filename, &body)?;
+        let tagged_body = format!("<!-- URL: {} -->\n{}", url, body);
+        write(&filename, tagged_body)?;
 
         let document = Html::parse_document(&body);
         let selector = scraper::Selector::parse("a").unwrap();

@@ -2,11 +2,11 @@
 Name: search.rs
 Author: Ishan Leung
 Language: Rust
-Description: CLI binary for launching the improved TF-IDF Wikipedia text search engine.
+Description: CLI TF-IDF Wikipedia search (fallback interface if web is down).
 */
 
 use anyhow::Result;
-use ishansearch::{indexer, results};
+use ishansearch::indexer;
 use std::io::{self, Write};
 
 fn main() -> Result<()> {
@@ -36,10 +36,12 @@ fn main() -> Result<()> {
             continue;
         }
 
-        println!("Found {} results for '{}'", results_vec.len(), query);
-        results::interactively_display_results(&results_vec, &query)?;
+        println!("Found {} results for '{}':", results_vec.len(), query);
+        for (filename, score) in results_vec.iter().take(10) {
+            println!("  - {} ({:.3})", filename, score);
+        }
     }
 
-    println!("Thank you for using IshanSearch!");
+    println!("Thank you for using IshanSearch CLI!");
     Ok(())
 }
