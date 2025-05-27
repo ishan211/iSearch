@@ -1,0 +1,2 @@
+ALTER TABLE urls DROP COLUMN title;
+ALTER TABLE urls DROP COLUMN clean_text;

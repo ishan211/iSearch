@@ -2,18 +2,43 @@
 Name: crawler.rs
 Author: Ishan Leung
 Language: Rust
-Description: Web crawler to download up to 100 Wikipedia pages starting from a base URL.
+Description: Web crawler to download Wikipedia pages starting from a base URL.
 */
 
+use anyhow::Result;
+use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 use reqwest::blocking::Client;
 use scraper::Html;
-use std::collections::{HashSet, VecDeque};
-use std::fs::{create_dir_all, write};
-use std::time::Duration;
-use anyhow::Result;
+use serde::Serialize;
+use sha1::{Digest, Sha1};
+use std::{
+    collections::{HashMap, HashSet, VecDeque},
+    fs::{create_dir_all, write, File},
+    io::Write,
+    path::Path,
+    time::Duration,
+};
 
 const BASE: &str = "https://en.wikipedia.org";
-const MAX_PAGES: usize = 100;
+const MAX_PAGES: usize = 1000;
+
+#[derive(Serialize)]
+struct ManifestEntry {
+    hash: String,
+    url: String,
+    encoded_name: String,
+}
+
+fn hash_url(url: &str) -> String {
+    let mut hasher = Sha1::new();
+    hasher.update(url.as_bytes());
+    format!("{:x}", hasher.finalize())
+}
+
+fn percent_safe_filename(url: &str) -> String {
+    let path = url.strip_prefix(BASE).unwrap_or(url);
+    utf8_percent_encode(path, NON_ALPHANUMERIC).to_string()
+}
 
 pub fn crawl(start_url: &str, output_dir: &str) -> Result<()> {
     create_dir_all(output_dir)?;
@@ -24,6 +49,8 @@ pub fn crawl(start_url: &str, output_dir: &str) -> Result<()> {
 
     let mut visited = HashSet::new();
     let mut queue = VecDeque::new();
+    let mut manifest: HashMap<String, ManifestEntry> = HashMap::new();
+
     queue.push_back(start_url.to_string());
 
     while let Some(url) = queue.pop_front() {
@@ -45,10 +72,19 @@ pub fn crawl(start_url: &str, output_dir: &str) -> Result<()> {
 
         visited.insert(url.clone());
 
-        let name = url.replace(BASE, "").replace("/", "_");
-        let filename = format!("{}/{}.html", output_dir, name.trim_start_matches('_'));
+        let hash = hash_url(&url);
+        let filename = format!("{}/{}.html", output_dir, hash);
         let tagged_body = format!("<!-- URL: {} -->\n{}", url, body);
         write(&filename, tagged_body)?;
+
+        manifest.insert(
+            hash.clone(),
+            ManifestEntry {
+                hash,
+                url: url.clone(),
+                encoded_name: percent_safe_filename(&url),
+            },
+        );
 
         let document = Html::parse_document(&body);
         let selector = scraper::Selector::parse("a").unwrap();
@@ -64,6 +100,11 @@ pub fn crawl(start_url: &str, output_dir: &str) -> Result<()> {
             }
         }
     }
+
+    // Save manifest
+    let manifest_path = Path::new(output_dir).join("manifest.json");
+    let mut file = File::create(manifest_path)?;
+    file.write_all(serde_json::to_string_pretty(&manifest)?.as_bytes())?;
 
     println!("Crawling complete. {} pages saved.", visited.len());
     Ok(())

@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search Results for "{{ keyword }}"</h1>
-    <a href="/search">← Back to Search</a>
+<h1>Search results for "{{ keyword }}"</h1>
 
+<a href="/search"><button>← Return to Search</button></a>
+
+<ul>
     {% if results | length == 0 %}
-        <p>No results found.</p>
+        <li><i>No results found.</i></li>
     {% else %}
-        <ul>
         {% for result in results %}
-            <li><a href="{{ result.1 }}" target="_blank">{{ result.0 }}</a></li>
+            {% set fname = result.0 %}
+            {% set url = result.1 %}
+            {% set title = result.2 %}
+            <li>
+                <a href="{{ url | safe }}">{{ title | default(value="(no title)") }}</a>
+                <br><small><a href="/open/cleaned/{{ fname }}">{{ fname }}</a></small>
+            </li>
         {% endfor %}
-        </ul>
     {% endif %}
-</body>
-</html>
+</ul>

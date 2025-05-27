@@ -1,0 +1,2 @@
+ALTER TABLE urls ADD COLUMN title TEXT;
+ALTER TABLE urls ADD COLUMN clean_text TEXT;

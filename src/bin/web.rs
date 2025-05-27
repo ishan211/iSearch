@@ -18,7 +18,7 @@ use rocket::fs::NamedFile;
 use rocket_dyn_templates::{context, Template};
 
 use ishansearch::indexer;
-use ishansearch::models::UrlMapping;
+use ishansearch::models::UrlEntry;
 use ishansearch::schema::urls;
 use ishansearch::establish_connection;
 
@@ -40,62 +40,40 @@ fn search_page() -> Template {
 #[post("/search", data = "<form>")]
 fn perform_search(form: Form<SearchForm>) -> Template {
     let query = &form.query;
-    let index = indexer::build_index("data/cleaned").unwrap_or_default();
-    let hits = indexer::search(&index, query);
 
+    // Build TF-IDF index
+    let index = indexer::build_index("data/cleaned").unwrap_or_default();
+    println!("Built TF-IDF index with {} terms", index.len());
+
+    // Run search
+    let hits = indexer::combined_search(&index, "data/cleaned", query).unwrap_or_default();
+    println!("Found {} matching documents for '{}'", hits.len(), query);
+    println!("Combined score results for '{}': {:?}", query, hits);
+
+    // Load entries from DB
     let conn = &mut establish_connection();
-    let db_entries: Vec<UrlMapping> = urls::table.load(conn).unwrap_or_default();
-    
-    // Print database entries
-    println!("Database entries:");
-    for entry in &db_entries {
-        println!("  ID: {}, Filename: '{}', URL: '{}'", entry.id, entry.filename, entry.url);
-    }
-    
-    let db_map: HashMap<String, String> = db_entries
+    let db_entries: Vec<UrlEntry> = urls::table.load(conn).unwrap_or_default();
+    let db_map: HashMap<String, (String, Option<String>)> = db_entries
         .into_iter()
-        .map(|entry| (entry.filename, entry.url))
+        .map(|entry| (entry.filename, (entry.url, entry.title)))
         .collect();
 
-    // Print search hits
-    println!("Search hits:");
-    for (fname, score) in &hits {
-        println!("  Filename: '{}', Score: {}", fname, score);
-    }
-
-    let results: Vec<(String, String)> = hits
+    // Map results to URL and title
+    let results: Vec<(String, String, Option<String>)> = hits
         .into_iter()
         .map(|(fname, _score)| {
-            // Try multiple filename formats to match with database
-            let possible_filenames = vec![
-                fname.clone(),                      // exact match
-                format!("cleaned/{}", fname),       // add cleaned/ prefix
-                format!("data/cleaned/{}", fname),  // add data/cleaned/ prefix
-            ];
-            
-            println!("Trying to match search filename: '{}'", fname);
-            
-            let mut found_url = None;
-            for filename_variant in &possible_filenames {
-                if let Some(url) = db_map.get(filename_variant) {
-                    found_url = Some(url.clone());
-                    println!("Found URL using variant: '{}'", filename_variant);
-                    break;
-                } else {
-                    println!("No match for variant: '{}'", filename_variant);
-                }
-            }
-            
-            let url = found_url.unwrap_or_else(|| {
-                println!("Warning: No URL found for filename '{}' (tried {} variants)", fname, possible_filenames.len());
-                "https://ishanleung.com".to_string()
-            });
-            
-            (fname, url)
+            let (url, title) = db_map
+                .get(&fname)
+                .cloned()
+                .unwrap_or_else(|| {
+                    println!("Warning: No URL found for '{}'", fname);
+                    ("https://ishanleung.com".to_string(), None)
+                });
+            (fname, url, title)
         })
         .collect();
 
-    Template::render("results", context! { keyword: query, results: results })
+    Template::render("results", context! { keyword: query, results })
 }
 
 #[get("/open/<path..>")]

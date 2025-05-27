@@ -2,8 +2,10 @@
 
 diesel::table! {
     urls (id) {
-        id -> Integer,
+        id -> Nullable<Integer>,
         filename -> Text,
         url -> Text,
+        title -> Nullable<Text>,
+        clean_text -> Nullable<Text>,
     }
 }

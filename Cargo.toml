@@ -13,6 +13,9 @@ serde_json = "1.0"
 reqwest = { version = "0.11", features = ["blocking", "rustls-tls"] }
 scraper = "0.13"
 url = "2"
+percent-encoding = "2.3.1"
+sha1 = "0.10"
+html2text = "0.4"
 
 # Web UI
 rocket = { version = "0.5.1", features = ["json", "secrets", "tls"] }

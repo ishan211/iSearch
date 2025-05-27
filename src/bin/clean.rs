@@ -8,10 +8,30 @@ Description: CLI binary for cleaning HTML and inserting filename → URL into SQ
 use anyhow::Result;
 use diesel::prelude::*;
 use dotenvy::dotenv;
-use ishansearch::{establish_connection, models::NewUrlMapping, schema::urls};
+use ishansearch::{establish_connection, models::NewUrlEntry, schema::urls::dsl::*};
 use scraper::{Html, Selector};
+use sha1::{Digest, Sha1};
 use std::fs::{self, create_dir_all, read_to_string, write};
 use std::path::Path;
+
+fn extract_title(html: &str) -> Option<String> {
+    let doc = Html::parse_document(html);
+    let selector = Selector::parse("title").ok()?;
+    doc.select(&selector)
+        .next()
+        .and_then(|el| Some(el.text().collect::<Vec<_>>().join(" ").trim().to_string()))
+}
+
+fn extract_clean_text(html: &str) -> String {
+    let doc = Html::parse_document(html);
+    let selector = Selector::parse("p, h1, h2, h3").unwrap();
+    let mut text = String::new();
+    for el in doc.select(&selector) {
+        text.push_str(&el.text().collect::<Vec<_>>().join(" "));
+        text.push('\n');
+    }
+    text.trim().to_string()
+}
 
 fn main() -> Result<()> {
     dotenv().ok();
@@ -21,13 +41,10 @@ fn main() -> Result<()> {
     create_dir_all(output_dir)?;
 
     let conn = &mut establish_connection();
-    
-    // Clear existing data 
-    diesel::delete(urls::table).execute(conn)?;
-    
-    let selector = Selector::parse("p, h1, h2, h3").unwrap();
 
-    let mut url_mappings: Vec<(String, String)> = Vec::new();
+    diesel::delete(urls).execute(conn)?;
+
+    let mut new_entries = Vec::new();
 
     for entry in fs::read_dir(input_dir)? {
         let path = entry?.path();
@@ -35,50 +52,51 @@ fn main() -> Result<()> {
             continue;
         }
 
-        let filename = path.file_stem().unwrap().to_string_lossy().to_string();
         let html = read_to_string(&path)?;
-        let doc = Html::parse_document(&html);
-        let mut text = String::new();
-
-        for element in doc.select(&selector) {
-            text.push_str(&element.text().collect::<Vec<_>>().join(" "));
-            text.push('\n');
+        let clean_text_val = extract_clean_text(&html);
+        if clean_text_val.trim().is_empty() {
+            println!("Skipping empty content: {}", path.display());
+            continue;
         }
 
-        let out_path = output_dir.join(format!("{filename}.txt"));
-        write(&out_path, &text)?;
+        let title_val = extract_title(&html);
+        let url_val = html.lines().next()
+            .and_then(|line| {
+                if line.starts_with("<!--") && line.contains("URL:") {
+                    Some(
+                        line.trim_start_matches("<!-- URL:")
+                            .trim_end_matches("-->")
+                            .trim()
+                            .to_string()
+                    )
+                } else {
+                    None
+                }
+            })
+            .unwrap_or_else(|| "https://ishanleung.com".to_string());
 
-        // Extract the original URL from the first HTML comment
-        if let Some(first_line) = html.lines().next() {
-            if first_line.starts_with("<!--") && first_line.contains("URL:") {
-                let url = first_line
-                    .trim_start_matches("<!-- URL:")
-                    .trim_end_matches("-->")
-                    .trim()
-                    .to_string();
-                let filename_path = format!("cleaned/{}.txt", filename);
-                
-                // Store the owned strings
-                url_mappings.push((filename_path, url));
-            }
-        }
+        let mut hasher = Sha1::new();
+        hasher.update(&url_val);
+        let hash = format!("{:x}", hasher.finalize());
+        let filename_val = format!("{}.txt", hash);
+
+        let output_path = output_dir.join(&filename_val);
+        write(&output_path, &clean_text_val)?;
+        println!("Saved cleaned text to {}", output_path.display());
+
+        new_entries.push(NewUrlEntry {
+            filename: filename_val,
+            url: url_val,
+            title: title_val,
+            clean_text: Some(clean_text_val),
+        });
     }
 
-    // Convert to NewUrlMapping structs for database insertion
-    let new_mappings: Vec<NewUrlMapping> = url_mappings
-        .iter()
-        .map(|(filename, url)| NewUrlMapping {
-            filename: filename.as_str(),
-            url: url.as_str(),
-        })
-        .collect();
-
-    diesel::insert_into(urls::table)
-        .values(&new_mappings)
+    diesel::insert_into(urls)
+        .values(&new_entries)
         .execute(conn)?;
 
-    println!("Cleaned files saved to data/cleaned/");
-    println!("{} entries inserted into ishansearch.db", new_mappings.len());
+    println!("Cleaned and inserted {} entries into ishansearch.db", new_entries.len());
 
     Ok(())
 }
