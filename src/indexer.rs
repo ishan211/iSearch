@@ -110,7 +110,7 @@ pub fn search(tfidf: &TfIdfIndex, query: &str) -> Vec<(String, f64)> {
 
     let mut results: Vec<_> = scores.into_iter().collect();
     results.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
-    println!("🔍 Found {} matching documents for '{}'", results.len(), query);
+    println!("Found {} matching documents for '{}'", results.len(), query);
     results
 }
 

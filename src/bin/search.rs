@@ -2,17 +2,22 @@
 Name: search.rs
 Author: Ishan Leung
 Language: Rust
-Description: CLI TF-IDF Wikipedia search (fallback interface if web is down).
+Description: CLI TF-IDF Wikipedia search using prebuilt index.
 */
 
 use anyhow::Result;
-use ishansearch::indexer;
-use std::io::{self, Write};
+use ishansearch::indexer::{self, TfIdfIndex};
+use std::fs::File;
+use std::io::{self, Read, Write};
+use bincode::deserialize;
 
 fn main() -> Result<()> {
-    println!("Building TF-IDF index...");
-    let index = indexer::build_index("cleaned")?;
-    println!("Index built successfully!");
+    println!("Loading prebuilt TF-IDF index...");
+    let mut file = File::open("data/ishansearch_tf-idf.index")?;
+    let mut buffer = Vec::new();
+    file.read_to_end(&mut buffer)?;
+    let index: TfIdfIndex = deserialize(&buffer)?;
+    println!("Index loaded successfully!");
 
     loop {
         print!("\nEnter search term(s) (or 'exit'): ");

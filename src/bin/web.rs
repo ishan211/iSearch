@@ -9,6 +9,8 @@ Description: Rocket-powered web frontend to search TF-IDF index and open URLs.
 extern crate rocket;
 
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::Read;
 use std::path::PathBuf;
 
 use diesel::prelude::*;
@@ -17,7 +19,8 @@ use rocket::form::Form;
 use rocket::fs::NamedFile;
 use rocket_dyn_templates::{context, Template};
 
-use ishansearch::indexer;
+use bincode::deserialize;
+use ishansearch::indexer::{combined_search, TfIdfIndex};
 use ishansearch::models::UrlEntry;
 use ishansearch::schema::urls;
 use ishansearch::establish_connection;
@@ -41,14 +44,16 @@ fn search_page() -> Template {
 fn perform_search(form: Form<SearchForm>) -> Template {
     let query = &form.query;
 
-    // Build TF-IDF index
-    let index = indexer::build_index("data/cleaned").unwrap_or_default();
-    println!("Built TF-IDF index with {} terms", index.len());
+    // Load TF-IDF index from file
+    let mut file = File::open("data/ishansearch_tf-idf.index").unwrap();
+    let mut buffer = Vec::new();
+    file.read_to_end(&mut buffer).unwrap();
+    let index: TfIdfIndex = deserialize(&buffer).unwrap();
+    println!("Loaded TF-IDF index with {} terms", index.len());
 
     // Run search
-    let hits = indexer::combined_search(&index, "data/cleaned", query).unwrap_or_default();
+    let hits = combined_search(&index, "data/cleaned", query).unwrap_or_default();
     println!("Found {} matching documents for '{}'", hits.len(), query);
-    println!("Combined score results for '{}': {:?}", query, hits);
 
     // Load entries from DB
     let conn = &mut establish_connection();
