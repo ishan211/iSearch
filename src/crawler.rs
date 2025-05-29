@@ -20,7 +20,7 @@ use std::{
 };
 
 const BASE: &str = "https://en.wikipedia.org";
-const MAX_PAGES: usize = 1000;
+const MAX_PAGES: usize = 10000;
 
 #[derive(Serialize)]
 struct ManifestEntry {
